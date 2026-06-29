@@ -290,27 +290,20 @@ function renderTableSeats(players){
 
 const myCards =
   player.userId === state.profile?.id
-    ? (state.myHand?.cards || [])
-        .map(renderCard)
-        .join("")
-    : `${renderBack()}${renderBack()}`;
+    ? `
+      <div class="seat-cards">
+        ${(state.myHand?.cards || [])
+          .map(renderCard)
+          .join("")}
+      </div>
+    `
+    : "";
 
 seat.innerHTML = `
-  <div class="seat-name">
-    ${player.name}
-  </div>
-
-  <div class="seat-stack">
-    ${player.stack}
-  </div>
-
-  <div class="seat-action">
-    ${player.lastAction || ""}
-  </div>
-
-  <div class="seat-cards">
-    ${myCards}
-  </div>
+  <div class="seat-name">${player.name}</div>
+  <div class="seat-stack">${player.stack}</div>
+  <div class="seat-action">${player.lastAction || ""}</div>
+  ${myCards}
 `;
     });
 }

@@ -497,10 +497,6 @@ input:focus{
     border-radius:50px;
   }
 
-  .seat{
-    display:none;
-  }
-
   .table-header{
     flex-direction:column;
     align-items:flex-start;
@@ -813,18 +809,18 @@ input:focus{
   }
 
   .seat{
-    width:70px;
-    min-height:55px;
-    font-size:10px;
+    width:82px;
+    min-height:90px;
+    padding:4px;
+    font-size:9px;
   }
 
   .seat-cards .card-face,
   .seat-cards .card-back{
     width:18px;
     height:26px;
-    font-size:10px;
+    font-size:9px;
   }
-
   .card-face,
   .card-back,
   .card-slot{
