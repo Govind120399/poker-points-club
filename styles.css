@@ -17,7 +17,8 @@
 }
 
 body{
-  overflow:hidden;
+  margin:0;
+  overflow-x:hidden;
   background:
     radial-gradient(circle at top,#1a1a1a 0%,#060606 50%);
   color:var(--text);
@@ -542,11 +543,7 @@ input:focus{
 /* ================= TABLE PANEL ================= */
 
 #table-panel{
-  height:100vh;
-  overflow:hidden;
-  display:flex;
-  flex-direction:column;
-  padding-bottom:180px;
+  display:block;
 }
 
 /* ================= HEADER ================= */
@@ -599,18 +596,14 @@ input:focus{
 /* ================= TABLE ================= */
 
 .table-wrapper{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  min-height:0;
+  margin-bottom:20px;
 }
 
 .poker-table{
   width:100%;
-  height:42vh;
-  min-height:300px;
-  max-height:450px;
+  height:320px;
+  min-height:320px;
+  max-height:420px;
 
   border-radius:220px;
 
@@ -654,12 +647,7 @@ input:focus{
 /* ================= YOUR HAND ================= */
 
 .my-hand-panel{
-  position:fixed;
-  left:12px;
-  right:12px;
-  bottom:110px;
-  z-index:500;
-  padding:14px;
+  margin-top:20px;
 }
 
 /* ================= HOST PANEL ================= */
@@ -671,10 +659,8 @@ input:focus{
 /* ================= ACTION PANEL ================= */
 
 .action-panel{
-  position:fixed;
-  left:0;
-  right:0;
-  bottom:60px;
+  margin-top:20px;
+  margin-bottom:20px;
   z-index:600;
 
   border-radius:
@@ -807,11 +793,6 @@ input:focus{
 /* ================= MOBILE ================= */
 
 @media (max-width:700px){
-
-  body{
-    overflow:hidden;
-  }
-
   .app-shell{
     padding:10px;
   }
@@ -875,4 +856,11 @@ input:focus{
     padding:10px;
     font-size:13px;
   }
+}
+#auth-panel,
+#lobby-panel{
+  display:block;
+}
+#table-panel{
+  padding-bottom:90px;
 }
