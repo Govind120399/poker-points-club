@@ -2,206 +2,439 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poker Points Club</title>
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1.0,maximum-scale=1.0"
+  />
+  <title>Poker Night Club</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app-shell">
-    <header class="hero">
+
+<div class="app-shell">
+
+  <!-- ================= AUTH ================= -->
+
+  <section class="auth-screen panel" id="auth-panel">
+
+    <div class="brand-logo">
+      ♠ POKER NIGHT CLUB ♠
+    </div>
+
+    <h1>Welcome</h1>
+    <p class="subtext">
+      Multiplayer Texas Hold'em for friends.
+    </p>
+
+    <div class="stack">
+
+      <input
+        id="auth-email"
+        type="email"
+        placeholder="Email"
+      >
+
+      <input
+        id="auth-password"
+        type="password"
+        placeholder="Password"
+      >
+
+      <input
+        id="auth-name"
+        type="text"
+        placeholder="Display Name"
+      >
+
+      <button
+        class="primary-button"
+        id="signup-button"
+      >
+        Create Account
+      </button>
+
+      <button
+        class="secondary-button"
+        id="login-button"
+      >
+        Sign In
+      </button>
+
+      <button
+        class="secondary-button"
+        id="guest-button"
+      >
+        Continue as Guest
+      </button>
+
+      <p
+        id="auth-message"
+        class="error-text"
+      ></p>
+
+    </div>
+
+  </section>
+
+  <!-- ================= LOBBY ================= -->
+
+  <section
+    class="panel hidden"
+    id="lobby-panel"
+  >
+
+    <div class="row-between">
+
       <div>
-        <p class="eyebrow">Multiplayer Texas Hold'em</p>
-        <h1>Poker Points Club</h1>
-        <p class="subcopy">Every player joins from their own phone or laptop. The table state is shared through Firestore, but your hole cards stay private to your account.</p>
+        <h2>Poker Lobby</h2>
+        <p id="session-label">
+          Signed in
+        </p>
       </div>
-      <div class="hero-badge">Firebase + Firestore</div>
+
+      <button
+        class="secondary-button"
+        id="logout-button"
+      >
+        Logout
+      </button>
+
+    </div>
+
+    <div class="lobby-grid">
+
+      <div class="panel inset">
+
+        <h3>Create Table</h3>
+
+        <input
+          id="create-table-name"
+          placeholder="Friday Poker Night"
+        >
+
+        <input
+          id="create-starting-stack"
+          type="number"
+          value="1000"
+        >
+
+        <input
+          id="create-small-blind"
+          type="number"
+          value="10"
+        >
+
+        <input
+          id="create-big-blind"
+          type="number"
+          value="20"
+        >
+
+        <button
+          class="primary-button"
+          id="create-table-button"
+        >
+          Create Table
+        </button>
+
+      </div>
+
+      <div class="panel inset">
+
+        <h3>Join Table</h3>
+
+        <input
+          id="join-code"
+          placeholder="ROOM CODE"
+        >
+
+        <button
+          class="secondary-button"
+          id="join-table-button"
+        >
+          Join
+        </button>
+
+      </div>
+
+    </div>
+
+    <p
+      id="lobby-message"
+      class="error-text"
+    ></p>
+
+  </section>
+
+  <!-- ================= TABLE ================= -->
+
+  <section
+    class="hidden"
+    id="table-panel"
+  >
+
+    <!-- Top Header -->
+
+    <header class="table-header">
+
+      <div>
+
+        <h2 id="table-title">
+          Poker Night
+        </h2>
+
+        <p id="table-status">
+          Waiting
+        </p>
+
+      </div>
+
+      <div class="header-buttons">
+
+        <div
+          id="table-code-pill"
+          class="pill"
+        >
+          Code
+        </div>
+
+        <button
+          id="leave-table-button"
+          class="secondary-button"
+        >
+          Leave
+        </button>
+
+      </div>
+
     </header>
 
-    <main class="layout">
-      <section class="panel" id="auth-panel">
-        <div class="panel-head">
-          <h2>Join The App</h2>
-          <p>Sign in with email, or use a demo guest seat while testing.</p>
-        </div>
-        <div class="stack">
-          <div class="grid two">
-            <label>
-              <span>Email</span>
-              <input id="auth-email" type="email" placeholder="you@example.com">
-            </label>
-            <label>
-              <span>Password</span>
-              <input id="auth-password" type="password" placeholder="At least 6 characters">
-            </label>
-          </div>
-          <label>
-            <span>Display name</span>
-            <input id="auth-name" type="text" placeholder="How friends will see you at the table">
-          </label>
-          <div class="row">
-            <button class="primary-button" id="signup-button" type="button">Create account</button>
-            <button class="secondary-button" id="login-button" type="button">Sign in</button>
-            <button class="secondary-button" id="guest-button" type="button">Try guest mode</button>
-          </div>
-          <p class="error-text" id="auth-message"></p>
-        </div>
-      </section>
+    <!-- Summary -->
 
-      <section class="panel hidden" id="lobby-panel">
-        <div class="panel-head row-between">
-          <div>
-            <h2>Lobby</h2>
-            <p id="session-label">Signed in</p>
-          </div>
-          <button class="secondary-button" id="logout-button" type="button">Sign out</button>
-        </div>
+    <section class="summary-grid">
 
-        <div class="table-grid">
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Create Table</h3>
-              <p>Host a new 7-10 player points table.</p>
-            </div>
-            <div class="stack">
-              <div class="grid two">
-                <label>
-                  <span>Table name</span>
-                  <input id="create-table-name" type="text" placeholder="Friday Poker Night">
-                </label>
-                <label>
-                  <span>Starting points</span>
-                  <input id="create-starting-stack" type="number" min="100" step="50" value="1000">
-                </label>
-              </div>
-              <div class="grid two">
-                <label>
-                  <span>Small blind</span>
-                  <input id="create-small-blind" type="number" min="5" step="5" value="10">
-                </label>
-                <label>
-                  <span>Big blind</span>
-                  <input id="create-big-blind" type="number" min="10" step="10" value="20">
-                </label>
-              </div>
-              <button class="primary-button" id="create-table-button" type="button">Create table</button>
-            </div>
+      <article class="summary-card">
+        <span>Pot</span>
+        <strong id="pot-value">
+          0 pts
+        </strong>
+      </article>
+
+      <article class="summary-card">
+        <span>Street</span>
+        <strong id="street-value">
+          Waiting
+        </strong>
+      </article>
+
+      <article class="summary-card">
+        <span>Current Bet</span>
+        <strong id="bet-value">
+          0 pts
+        </strong>
+      </article>
+
+      <article class="summary-card">
+        <span>Turn</span>
+        <strong id="turn-value">
+          -
+        </strong>
+      </article>
+
+    </section>
+
+    <!-- Poker Table -->
+
+    <section class="table-wrapper">
+
+      <div class="poker-table">
+
+        <!-- seats -->
+
+        <div class="seat seat1"></div>
+        <div class="seat seat2"></div>
+        <div class="seat seat3"></div>
+        <div class="seat seat4"></div>
+        <div class="seat seat5"></div>
+        <div class="seat seat6"></div>
+        <div class="seat seat7"></div>
+        <div class="seat seat8"></div>
+        <div class="seat seat9"></div>
+        <div class="seat seat10"></div>
+
+        <!-- center -->
+
+        <div class="table-center">
+
+          <div
+            id="hand-message"
+            class="pill"
+          >
+            Waiting for host
           </div>
 
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Join Table</h3>
-              <p>Enter the 6-character room code from your host.</p>
-            </div>
-            <div class="stack">
-              <label>
-                <span>Room code</span>
-                <input id="join-code" type="text" placeholder="ABC123">
-              </label>
-              <button class="secondary-button" id="join-table-button" type="button">Join existing table</button>
-              <p class="helper">Players can only see their own private cards. Everyone shares the same board, pot, and action log.</p>
-            </div>
-          </div>
+          <div
+            id="community-cards"
+            class="cards-row"
+          ></div>
+
         </div>
 
-        <p class="error-text" id="lobby-message"></p>
-      </section>
+      </div>
 
-      <section class="panel hidden" id="table-panel">
-        <div class="panel-head row-between">
-          <div>
-            <h2 id="table-title">Table</h2>
-            <p id="table-status">Waiting for players</p>
-          </div>
-          <div class="row">
-            <div class="pill" id="table-code-pill">Code: ------</div>
-            <button class="secondary-button" id="leave-table-button" type="button">Leave table</button>
-          </div>
-        </div>
+    </section>
 
-        <div class="summary-grid">
-          <article class="summary-card">
-            <span class="summary-label">Pot</span>
-            <strong id="pot-value">0 pts</strong>
-          </article>
-          <article class="summary-card">
-            <span class="summary-label">Street</span>
-            <strong id="street-value">Waiting</strong>
-          </article>
-          <article class="summary-card">
-            <span class="summary-label">Current bet</span>
-            <strong id="bet-value">0 pts</strong>
-          </article>
-          <article class="summary-card">
-            <span class="summary-label">Turn</span>
-            <strong id="turn-value">-</strong>
-          </article>
-        </div>
+    <!-- My Hand -->
 
-        <div class="community-block">
-          <div class="row-between">
-            <h3>Community Cards</h3>
-            <div id="hand-message" class="pill">Waiting for the host to start</div>
-          </div>
-          <div id="community-cards" class="cards-row"></div>
-        </div>
+    <section class="panel inset">
 
-        <div class="table-grid">
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Your Seat</h3>
-              <p>This section shows only your private hand.</p>
-            </div>
-            <div id="my-seat" class="stack"></div>
-          </div>
+      <h3>Your Hand</h3>
 
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Host Controls</h3>
-              <p>Visible only to the table host.</p>
-            </div>
-            <div id="host-controls" class="stack"></div>
-          </div>
-        </div>
+      <div id="my-seat"></div>
 
-        <div class="table-grid">
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Players</h3>
-              <p>Everyone sees stack sizes and action state, but not other players' cards.</p>
-            </div>
-            <div id="players-table" class="players-table"></div>
-          </div>
+    </section>
 
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Action Controls</h3>
-              <p>You can only act when it is your turn.</p>
-            </div>
-            <div id="action-controls" class="stack"></div>
-          </div>
-        </div>
+    <!-- Host -->
 
-        <div class="table-grid">
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Hand Result</h3>
-              <p>Visible after the hand finishes.</p>
-            </div>
-            <div id="results-box" class="results-box empty-state">No showdown yet.</div>
-          </div>
+    <section class="panel inset">
 
-          <div class="panel inset">
-            <div class="panel-head tight">
-              <h3>Action Log</h3>
-              <p>Latest shared table actions</p>
-            </div>
-            <div id="action-log" class="log-list"></div>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+      <h3>Host Controls</h3>
 
-  <script type="module" src="app.js"></script>
+      <div id="host-controls"></div>
+
+    </section>
+
+    <!-- Actions -->
+
+    <section class="panel inset action-panel">
+
+      <h3>Action</h3>
+
+      <div id="action-controls"></div>
+
+    </section>
+
+    <!-- Bottom Navigation -->
+
+    <nav class="mobile-tabs">
+
+      <button
+        class="tab-button active"
+        data-target="players-section"
+      >
+        Players
+      </button>
+
+      <button
+        class="tab-button"
+        data-target="log-section"
+      >
+        Log
+      </button>
+
+      <button
+        class="tab-button"
+        data-target="results-section"
+      >
+        Results
+      </button>
+
+    </nav>
+
+    <!-- Players -->
+
+    <section
+      id="players-section"
+      class="tab-content"
+    >
+
+      <div class="panel inset">
+
+        <h3>Players</h3>
+
+        <div id="players-table"></div>
+
+      </div>
+
+    </section>
+
+    <!-- Log -->
+
+    <section
+      id="log-section"
+      class="tab-content hidden"
+    >
+
+      <div class="panel inset">
+
+        <h3>Action Log</h3>
+
+        <div
+          id="action-log"
+          class="log-list"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <!-- Results -->
+
+    <section
+      id="results-section"
+      class="tab-content hidden"
+    >
+
+      <div class="panel inset">
+
+        <h3>Results</h3>
+
+        <div
+          id="results-box"
+          class="results-box"
+        ></div>
+
+      </div>
+
+    </section>
+
+  </section>
+
+</div>
+
+<script>
+document.addEventListener("click", function(e){
+
+  if(!e.target.classList.contains("tab-button"))
+    return;
+
+  document
+    .querySelectorAll(".tab-button")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+  e.target.classList.add("active");
+
+  document
+    .querySelectorAll(".tab-content")
+    .forEach(tab =>
+      tab.classList.add("hidden")
+    );
+
+  document
+    .getElementById(
+      e.target.dataset.target
+    )
+    .classList.remove("hidden");
+
+});
+</script>
+
+<script
+  type="module"
+  src="app.js"
+></script>
+
 </body>
 </html>
