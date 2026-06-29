@@ -258,6 +258,9 @@ function renderTable() {
   dom.actionLog.innerHTML = (game.log || []).length ? [...game.log].reverse().map((line) => `<div class="log-line">${line}</div>`).join("") : `<div class="empty-state">No action yet.</div>`;
   dom.resultsBox.innerHTML = (game.results || []).length ? game.results.map((line) => `<div class="result-line">${line}</div>`).join("") : `<div class="empty-state">No showdown yet.</div>`;
   dom.mySeat.innerHTML = me ? renderMySeat(me) : `<div class="empty-state">You are no longer seated at this table.</div>`;
+  console.log("My ID:", state.profile?.id);
+console.log("Host ID:", state.game?.hostId);
+console.log("Is Host:", isHost());
   dom.hostControls.innerHTML = isHost() ? renderHostControls() : `<div class="empty-state">Only the host sees table controls.</div>`;
   bindHostControls();
   dom.actionControls.innerHTML = renderActionControls(me, turn);
