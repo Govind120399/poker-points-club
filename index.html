@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<body>
 
 <div class="app-shell">
 
@@ -21,9 +22,10 @@
       ♠ POKER NIGHT CLUB ♠
     </div>
 
-    <h1>Welcome</h1>
+    <h1>Welcome Back</h1>
+
     <p class="subtext">
-      Multiplayer Texas Hold'em for friends.
+      Premium multiplayer Texas Hold'em for your poker nights.
     </p>
 
     <div class="stack">
@@ -31,7 +33,7 @@
       <input
         id="auth-email"
         type="email"
-        placeholder="Email"
+        placeholder="Email Address"
       >
 
       <input
@@ -49,6 +51,7 @@
       <button
         class="primary-button"
         id="signup-button"
+        type="button"
       >
         Create Account
       </button>
@@ -56,6 +59,7 @@
       <button
         class="secondary-button"
         id="login-button"
+        type="button"
       >
         Sign In
       </button>
@@ -63,6 +67,7 @@
       <button
         class="secondary-button"
         id="guest-button"
+        type="button"
       >
         Continue as Guest
       </button>
@@ -93,8 +98,9 @@
       </div>
 
       <button
-        class="secondary-button"
         id="logout-button"
+        class="secondary-button"
+        type="button"
       >
         Logout
       </button>
@@ -103,57 +109,73 @@
 
     <div class="lobby-grid">
 
+      <!-- CREATE TABLE -->
+
       <div class="panel inset">
 
         <h3>Create Table</h3>
 
-        <input
-          id="create-table-name"
-          placeholder="Friday Poker Night"
-        >
+        <div class="stack">
 
-        <input
-          id="create-starting-stack"
-          type="number"
-          value="1000"
-        >
+          <input
+            id="create-table-name"
+            type="text"
+            placeholder="Friday Poker Night"
+          >
 
-        <input
-          id="create-small-blind"
-          type="number"
-          value="10"
-        >
+          <input
+            id="create-starting-stack"
+            type="number"
+            value="1000"
+          >
 
-        <input
-          id="create-big-blind"
-          type="number"
-          value="20"
-        >
+          <input
+            id="create-small-blind"
+            type="number"
+            value="10"
+          >
 
-        <button
-          class="primary-button"
-          id="create-table-button"
-        >
-          Create Table
-        </button>
+          <input
+            id="create-big-blind"
+            type="number"
+            value="20"
+          >
+
+          <button
+            id="create-table-button"
+            class="primary-button"
+            type="button"
+          >
+            Create Table
+          </button>
+
+        </div>
 
       </div>
 
+      <!-- JOIN TABLE -->
+
       <div class="panel inset">
 
-        <h3>Join Table</h3>
+        <h3>Join Existing Table</h3>
 
-        <input
-          id="join-code"
-          placeholder="ROOM CODE"
-        >
+        <div class="stack">
 
-        <button
-          class="secondary-button"
-          id="join-table-button"
-        >
-          Join
-        </button>
+          <input
+            id="join-code"
+            type="text"
+            placeholder="Room Code"
+          >
+
+          <button
+            id="join-table-button"
+            class="secondary-button"
+            type="button"
+          >
+            Join Table
+          </button>
+
+        </div>
 
       </div>
 
@@ -173,18 +195,18 @@
     id="table-panel"
   >
 
-    <!-- Top Header -->
+    <!-- Header -->
 
     <header class="table-header">
 
       <div>
 
         <h2 id="table-title">
-          Poker Night
+          Poker Night Club
         </h2>
 
         <p id="table-status">
-          Waiting
+          Waiting for players
         </p>
 
       </div>
@@ -192,15 +214,16 @@
       <div class="header-buttons">
 
         <div
-          id="table-code-pill"
           class="pill"
+          id="table-code-pill"
         >
-          Code
+          Code: ------
         </div>
 
         <button
           id="leave-table-button"
           class="secondary-button"
+          type="button"
         >
           Leave
         </button>
@@ -209,37 +232,49 @@
 
     </header>
 
-    <!-- Summary -->
+    <!-- Compact Status Bar -->
 
-    <section class="summary-grid">
+    <section class="top-status-bar">
 
-      <article class="summary-card">
-        <span>Pot</span>
+      <div>
+        <span class="status-label">
+          Pot
+        </span>
+
         <strong id="pot-value">
           0 pts
         </strong>
-      </article>
+      </div>
 
-      <article class="summary-card">
-        <span>Street</span>
+      <div>
+        <span class="status-label">
+          Street
+        </span>
+
         <strong id="street-value">
           Waiting
         </strong>
-      </article>
+      </div>
 
-      <article class="summary-card">
-        <span>Current Bet</span>
+      <div>
+        <span class="status-label">
+          Bet
+        </span>
+
         <strong id="bet-value">
           0 pts
         </strong>
-      </article>
+      </div>
 
-      <article class="summary-card">
-        <span>Turn</span>
+      <div>
+        <span class="status-label">
+          Turn
+        </span>
+
         <strong id="turn-value">
           -
         </strong>
-      </article>
+      </div>
 
     </section>
 
@@ -249,7 +284,7 @@
 
       <div class="poker-table">
 
-        <!-- seats -->
+        <!-- Decorative seats -->
 
         <div class="seat seat1"></div>
         <div class="seat seat2"></div>
@@ -262,7 +297,7 @@
         <div class="seat seat9"></div>
         <div class="seat seat10"></div>
 
-        <!-- center -->
+        <!-- Center of table -->
 
         <div class="table-center">
 
@@ -283,118 +318,174 @@
       </div>
 
     </section>
+        <!-- ================= YOUR HAND ================= -->
 
-    <!-- My Hand -->
+    <section class="my-hand-panel panel inset">
 
-    <section class="panel inset">
+      <div class="section-title-row">
+        <h3>Your Hand</h3>
+      </div>
 
-      <h3>Your Hand</h3>
-
-      <div id="my-seat"></div>
-
-    </section>
-
-    <!-- Host -->
-
-    <section class="panel inset">
-
-      <h3>Host Controls</h3>
-
-      <div id="host-controls"></div>
+      <div id="my-seat">
+        <div class="empty-state">
+          Waiting to join table...
+        </div>
+      </div>
 
     </section>
 
-    <!-- Actions -->
+    <!-- ================= HOST CONTROLS ================= -->
+
+    <section class="panel inset host-panel">
+
+      <div class="section-title-row">
+        <h3>Host Controls</h3>
+      </div>
+
+      <div id="host-controls">
+
+        <div class="empty-state">
+          Host controls will appear here.
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ================= ACTIONS ================= -->
 
     <section class="panel inset action-panel">
 
-      <h3>Action</h3>
+      <div class="section-title-row">
+        <h3>Actions</h3>
+      </div>
 
-      <div id="action-controls"></div>
+      <div id="action-controls">
+
+        <div class="empty-state">
+          Waiting for hand to start.
+        </div>
+
+      </div>
 
     </section>
 
-    <!-- Bottom Navigation -->
+    <!-- ================= MOBILE NAVIGATION ================= -->
 
     <nav class="mobile-tabs">
 
       <button
         class="tab-button active"
-        data-target="players-section"
+        data-tab="table"
       >
-        Players
+        🃏
+        <span>Table</span>
       </button>
 
       <button
         class="tab-button"
-        data-target="log-section"
+        data-tab="players"
       >
-        Log
+        👥
+        <span>Players</span>
       </button>
 
       <button
         class="tab-button"
-        data-target="results-section"
+        data-tab="log"
       >
-        Results
+        📜
+        <span>Log</span>
+      </button>
+
+      <button
+        class="tab-button"
+        data-tab="results"
+      >
+        🏆
+        <span>Results</span>
       </button>
 
     </nav>
 
-    <!-- Players -->
+    <!-- ================= PLAYERS DRAWER ================= -->
 
     <section
       id="players-section"
-      class="tab-content"
+      class="drawer hidden"
     >
 
-      <div class="panel inset">
+      <div class="drawer-header">
 
         <h3>Players</h3>
 
-        <div id="players-table"></div>
+        <button
+          class="drawer-close"
+          data-close="players-section"
+        >
+          ✕
+        </button>
 
       </div>
 
+      <div
+        id="players-table"
+        class="players-table"
+      ></div>
+
     </section>
 
-    <!-- Log -->
+    <!-- ================= LOG DRAWER ================= -->
 
     <section
       id="log-section"
-      class="tab-content hidden"
+      class="drawer hidden"
     >
 
-      <div class="panel inset">
+      <div class="drawer-header">
 
         <h3>Action Log</h3>
 
-        <div
-          id="action-log"
-          class="log-list"
-        ></div>
+        <button
+          class="drawer-close"
+          data-close="log-section"
+        >
+          ✕
+        </button>
 
       </div>
+
+      <div
+        id="action-log"
+        class="log-list"
+      ></div>
 
     </section>
 
-    <!-- Results -->
+    <!-- ================= RESULTS DRAWER ================= -->
 
     <section
       id="results-section"
-      class="tab-content hidden"
+      class="drawer hidden"
     >
 
-      <div class="panel inset">
+      <div class="drawer-header">
 
         <h3>Results</h3>
 
-        <div
-          id="results-box"
-          class="results-box"
-        ></div>
+        <button
+          class="drawer-close"
+          data-close="results-section"
+        >
+          ✕
+        </button>
 
       </div>
+
+      <div
+        id="results-box"
+        class="results-box"
+      ></div>
 
     </section>
 
@@ -403,38 +494,78 @@
 </div>
 
 <script>
+
 document.addEventListener("click", function(e){
 
-  if(!e.target.classList.contains("tab-button"))
-    return;
+  const tab = e.target.closest(".tab-button");
 
-  document
-    .querySelectorAll(".tab-button")
-    .forEach(btn =>
-      btn.classList.remove("active")
-    );
+  if(tab){
 
-  e.target.classList.add("active");
+    const type = tab.dataset.tab;
 
-  document
-    .querySelectorAll(".tab-content")
-    .forEach(tab =>
-      tab.classList.add("hidden")
-    );
+    document
+      .querySelectorAll(".drawer")
+      .forEach(d =>
+        d.classList.add("hidden")
+      );
 
-  document
-    .getElementById(
-      e.target.dataset.target
-    )
-    .classList.remove("hidden");
+    document
+      .querySelectorAll(".tab-button")
+      .forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+    tab.classList.add("active");
+
+    if(type === "players"){
+      document
+        .getElementById("players-section")
+        .classList.remove("hidden");
+    }
+
+    if(type === "log"){
+      document
+        .getElementById("log-section")
+        .classList.remove("hidden");
+    }
+
+    if(type === "results"){
+      document
+        .getElementById("results-section")
+        .classList.remove("hidden");
+    }
+  }
+
+  const close = e.target.closest(".drawer-close");
+
+  if(close){
+
+    document
+      .getElementById(
+        close.dataset.close
+      )
+      .classList.add("hidden");
+
+    document
+      .querySelectorAll(".tab-button")
+      .forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+    document
+      .querySelector(
+        '[data-tab="table"]'
+      )
+      ?.classList.add("active");
+  }
 
 });
+
 </script>
 
 <script
   type="module"
   src="app.js"
 ></script>
-
 </body>
 </html>

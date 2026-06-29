@@ -17,7 +17,7 @@
 }
 
 body{
-  margin:0;
+  overflow:hidden;
   background:
     radial-gradient(circle at top,#1a1a1a 0%,#060606 50%);
   color:var(--text);
@@ -221,7 +221,9 @@ input:focus{
 
 .poker-table{
   position:relative;
-  height:560px;
+  height:45vh;
+  min-height:320px;
+  max-height:500px;
   border-radius:280px;
   background:
     radial-gradient(
@@ -535,5 +537,342 @@ input:focus{
     bottom:0;
     background:#060606;
     padding:10px 0;
+  }
+}
+/* ================= TABLE PANEL ================= */
+
+#table-panel{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  padding-bottom:180px;
+}
+
+/* ================= HEADER ================= */
+
+.table-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:12px;
+  flex-shrink:0;
+}
+
+.header-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* ================= STATUS BAR ================= */
+
+.top-status-bar{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  background:#111;
+  border:1px solid rgba(212,175,55,.15);
+  border-radius:20px;
+  padding:14px;
+  margin-bottom:14px;
+  flex-shrink:0;
+}
+
+.top-status-bar div{
+  text-align:center;
+}
+
+.status-label{
+  display:block;
+  color:#9d9d9d;
+  font-size:11px;
+  margin-bottom:4px;
+}
+
+.top-status-bar strong{
+  color:var(--gold2);
+  font-size:15px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrapper{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:0;
+}
+
+.poker-table{
+  width:100%;
+  height:42vh;
+  min-height:300px;
+  max-height:450px;
+
+  border-radius:220px;
+
+  background:
+    radial-gradient(
+      circle,
+      #12663d 0%,
+      #08301d 100%
+    );
+
+  border:10px solid #3b2a12;
+
+  box-shadow:
+    inset 0 0 50px rgba(0,0,0,.55),
+    0 15px 40px rgba(0,0,0,.55);
+
+  position:relative;
+}
+
+/* ================= TABLE CENTER ================= */
+
+.table-center{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  width:100%;
+}
+
+/* ================= COMMUNITY CARDS ================= */
+
+.cards-row{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
+
+/* ================= YOUR HAND ================= */
+
+.my-hand-panel{
+  position:fixed;
+  left:12px;
+  right:12px;
+  bottom:110px;
+  z-index:500;
+  padding:14px;
+}
+
+/* ================= HOST PANEL ================= */
+
+.host-panel{
+  display:none;
+}
+
+/* ================= ACTION PANEL ================= */
+
+.action-panel{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:60px;
+  z-index:600;
+
+  border-radius:
+    25px 25px 0 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #181818,
+      #101010
+    );
+
+  padding:16px;
+}
+
+.action-zone{
+  display:grid;
+  gap:10px;
+}
+
+.amount-row{
+  display:flex;
+  gap:10px;
+}
+
+.amount-row input{
+  flex:1;
+}
+
+.action-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+/* ================= MOBILE NAV ================= */
+
+.mobile-tabs{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:1200;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
+  background:#050505;
+  border-top:1px solid rgba(255,255,255,.08);
+
+  padding:
+    10px
+    10px
+    calc(env(safe-area-inset-bottom) + 10px);
+}
+
+.tab-button{
+  background:none;
+  border:none;
+  color:#9d9d9d;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+
+  font-size:20px;
+}
+
+.tab-button span{
+  font-size:11px;
+}
+
+.tab-button.active{
+  color:var(--gold2);
+}
+
+/* ================= DRAWERS ================= */
+
+.drawer{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:60px;
+
+  max-height:55vh;
+  overflow:auto;
+
+  background:#111;
+  border-radius:25px 25px 0 0;
+
+  z-index:1100;
+
+  padding:20px;
+
+  box-shadow:
+    0 -10px 40px rgba(0,0,0,.5);
+}
+
+.drawer-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.drawer-close{
+  background:none;
+  border:none;
+  color:white;
+  font-size:28px;
+}
+
+/* ================= PLAYERS ================= */
+
+.players-table{
+  display:grid;
+  gap:12px;
+}
+
+/* ================= RESULTS ================= */
+
+.results-box,
+.log-list{
+  max-height:none;
+  overflow:visible;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:700px){
+
+  body{
+    overflow:hidden;
+  }
+
+  .app-shell{
+    padding:10px;
+  }
+
+  .top-status-bar{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .poker-table{
+    height:35vh;
+    min-height:250px;
+    border-radius:40px;
+  }
+
+  .seat{
+    display:none;
+  }
+
+  .card-face,
+  .card-back,
+  .card-slot{
+    width:48px;
+    height:70px;
+    font-size:18px;
+  }
+
+  .my-hand-panel{
+    bottom:120px;
+  }
+
+  .action-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .player-meta{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+/* Extra small phones */
+
+@media (max-width:400px){
+
+  .top-status-bar{
+    padding:10px;
+  }
+
+  .top-status-bar strong{
+    font-size:13px;
+  }
+
+  .card-face,
+  .card-back,
+  .card-slot{
+    width:42px;
+    height:62px;
+    font-size:16px;
+  }
+
+  .action-button{
+    padding:10px;
+    font-size:13px;
   }
 }
