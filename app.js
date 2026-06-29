@@ -254,7 +254,7 @@ function renderTable() {
   dom.turnValue.textContent = turn?.name || "-";
   dom.handMessage.textContent = game.results?.[0] || (game.status === "active" ? "Hand in progress" : "Waiting for host");
   dom.communityCards.innerHTML = renderCommunityCards(game.community || []);
-  dom.playersTable.innerHTML = renderTableSeats(game.players || []);
+  renderTableSeats(game.players || []);
   dom.actionLog.innerHTML = (game.log || []).length ? [...game.log].reverse().map((line) => `<div class="log-line">${line}</div>`).join("") : `<div class="empty-state">No action yet.</div>`;
   dom.resultsBox.innerHTML = (game.results || []).length ? game.results.map((line) => `<div class="result-line">${line}</div>`).join("") : `<div class="empty-state">No showdown yet.</div>`;
   dom.mySeat.innerHTML = me ? renderMySeat(me) : `<div class="empty-state">You are no longer seated at this table.</div>`;
