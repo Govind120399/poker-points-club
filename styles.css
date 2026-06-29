@@ -647,7 +647,7 @@ input:focus{
 /* ================= YOUR HAND ================= */
 
 .my-hand-panel{
-  margin-top:20px;
+  margin-top:15px;
 }
 
 /* ================= HOST PANEL ================= */
@@ -659,9 +659,8 @@ input:focus{
 /* ================= ACTION PANEL ================= */
 
 .action-panel{
-  margin-top:20px;
-  margin-bottom:20px;
-  z-index:600;
+  margin-top:15px;
+  margin-bottom:90px;
 
   border-radius:
     25px 25px 0 0;
@@ -863,4 +862,30 @@ input:focus{
 }
 #table-panel{
   padding-bottom:90px;
+}
+.seat{
+  position:absolute;
+  width:95px;
+  min-height:70px;
+  padding:8px;
+  border-radius:20px;
+  background:rgba(0,0,0,.7);
+  border:1px solid rgba(212,175,55,.35);
+  text-align:center;
+  color:white;
+  font-size:12px;
+}
+
+.seat-name{
+  font-weight:700;
+}
+
+.seat-stack{
+  color:#f3d27a;
+  margin-top:4px;
+}
+
+.seat-action{
+  color:#999;
+  font-size:11px;
 }

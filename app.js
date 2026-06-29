@@ -254,7 +254,7 @@ function renderTable() {
   dom.turnValue.textContent = turn?.name || "-";
   dom.handMessage.textContent = game.results?.[0] || (game.status === "active" ? "Hand in progress" : "Waiting for host");
   dom.communityCards.innerHTML = renderCommunityCards(game.community || []);
-  dom.playersTable.innerHTML = renderPlayers(game.players || []);
+  dom.playersTable.innerHTML = renderTableSeats(game.players || []);
   dom.actionLog.innerHTML = (game.log || []).length ? [...game.log].reverse().map((line) => `<div class="log-line">${line}</div>`).join("") : `<div class="empty-state">No action yet.</div>`;
   dom.resultsBox.innerHTML = (game.results || []).length ? game.results.map((line) => `<div class="result-line">${line}</div>`).join("") : `<div class="empty-state">No showdown yet.</div>`;
   dom.mySeat.innerHTML = me ? renderMySeat(me) : `<div class="empty-state">You are no longer seated at this table.</div>`;
@@ -263,7 +263,43 @@ function renderTable() {
   dom.actionControls.innerHTML = renderActionControls(me, turn);
   bindActionControls(me, turn);
 }
+function renderTableSeats(players){
 
+  for(let i=1;i<=10;i++){
+    const seat =
+      document.getElementById(`seat${i}`);
+
+    if(seat){
+      seat.innerHTML = "";
+    }
+  }
+
+  players
+    .filter(p=>!p.removed)
+    .forEach(player=>{
+
+      const seat =
+        document.getElementById(
+          `seat${player.seatIndex + 1}`
+        );
+
+      if(!seat) return;
+
+      seat.innerHTML = `
+        <div class="seat-name">
+          ${player.name}
+        </div>
+
+        <div class="seat-stack">
+          ${player.stack}
+        </div>
+
+        <div class="seat-action">
+          ${player.lastAction || ""}
+        </div>
+      `;
+    });
+}
 function renderCommunityCards(cards) {
   const filled = [...cards];
   while (filled.length < 5) filled.push(null);
