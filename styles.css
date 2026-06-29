@@ -652,9 +652,15 @@ input:focus{
 
 /* ================= HOST PANEL ================= */
 
-/* .host-panel{
-  display:none;
-} */
+.host-panel{
+  margin-top:15px;
+  padding:15px;
+}
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
 /* ================= ACTION PANEL ================= */
 
@@ -807,7 +813,16 @@ input:focus{
   }
 
   .seat{
-    display:none;
+    width:70px;
+    min-height:55px;
+    font-size:10px;
+  }
+
+  .seat-cards .card-face,
+  .seat-cards .card-back{
+    width:18px;
+    height:26px;
+    font-size:10px;
   }
 
   .card-face,
@@ -888,4 +903,17 @@ input:focus{
 .seat-action{
   color:#999;
   font-size:11px;
+}
+.seat-cards{
+  display:flex;
+  justify-content:center;
+  gap:4px;
+  margin-top:6px;
+}
+
+.seat-cards .card-face,
+.seat-cards .card-back{
+  width:24px;
+  height:34px;
+  font-size:12px;
 }

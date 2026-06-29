@@ -288,19 +288,30 @@ function renderTableSeats(players){
 
       if(!seat) return;
 
-      seat.innerHTML = `
-        <div class="seat-name">
-          ${player.name}
-        </div>
+const myCards =
+  player.userId === state.profile?.id
+    ? (state.myHand?.cards || [])
+        .map(renderCard)
+        .join("")
+    : `${renderBack()}${renderBack()}`;
 
-        <div class="seat-stack">
-          ${player.stack}
-        </div>
+seat.innerHTML = `
+  <div class="seat-name">
+    ${player.name}
+  </div>
 
-        <div class="seat-action">
-          ${player.lastAction || ""}
-        </div>
-      `;
+  <div class="seat-stack">
+    ${player.stack}
+  </div>
+
+  <div class="seat-action">
+    ${player.lastAction || ""}
+  </div>
+
+  <div class="seat-cards">
+    ${myCards}
+  </div>
+`;
     });
 }
 function renderCommunityCards(cards) {
@@ -321,9 +332,6 @@ function renderMySeat(player) {
       <div><span class="meta-label">In pot</span><strong>${player.committed} pts</strong></div>
       <div><span class="meta-label">Street</span><strong>${player.streetBet} pts</strong></div>
       <div><span class="meta-label">Status</span><strong>${player.lastAction || "Waiting"}</strong></div>
-    </div>
-    <div class="hole-cards">
-      ${cards.length ? cards.map(renderCard).join("") : `${renderBack()}${renderBack()}`}
     </div>
   `;
 }
