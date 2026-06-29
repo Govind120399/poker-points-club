@@ -258,9 +258,6 @@ function renderTable() {
   dom.actionLog.innerHTML = (game.log || []).length ? [...game.log].reverse().map((line) => `<div class="log-line">${line}</div>`).join("") : `<div class="empty-state">No action yet.</div>`;
   dom.resultsBox.innerHTML = (game.results || []).length ? game.results.map((line) => `<div class="result-line">${line}</div>`).join("") : `<div class="empty-state">No showdown yet.</div>`;
   dom.mySeat.innerHTML = me ? renderMySeat(me) : `<div class="empty-state">You are no longer seated at this table.</div>`;
-  console.log("My ID:", state.profile?.id);
-console.log("Host ID:", state.game?.hostId);
-console.log("Is Host:", isHost());
   dom.hostControls.innerHTML = isHost() ? renderHostControls() : `<div class="empty-state">Only the host sees table controls.</div>`;
   bindHostControls();
   dom.actionControls.innerHTML = renderActionControls(me, turn);
@@ -288,23 +285,19 @@ function renderTableSeats(players){
 
       if(!seat) return;
 
-const myCards =
-  player.userId === state.profile?.id
-    ? `
-      <div class="seat-cards">
-        ${(state.myHand?.cards || [])
-          .map(renderCard)
-          .join("")}
-      </div>
-    `
-    : "";
+      seat.innerHTML = `
+        <div class="seat-name">
+          ${player.name}
+        </div>
 
-seat.innerHTML = `
-  <div class="seat-name">${player.name}</div>
-  <div class="seat-stack">${player.stack}</div>
-  <div class="seat-action">${player.lastAction || ""}</div>
-  ${myCards}
-`;
+        <div class="seat-stack">
+          ${player.stack}
+        </div>
+
+        <div class="seat-action">
+          ${player.lastAction || ""}
+        </div>
+      `;
     });
 }
 function renderCommunityCards(cards) {
@@ -325,6 +318,9 @@ function renderMySeat(player) {
       <div><span class="meta-label">In pot</span><strong>${player.committed} pts</strong></div>
       <div><span class="meta-label">Street</span><strong>${player.streetBet} pts</strong></div>
       <div><span class="meta-label">Status</span><strong>${player.lastAction || "Waiting"}</strong></div>
+    </div>
+    <div class="hole-cards">
+      ${cards.length ? cards.map(renderCard).join("") : `${renderBack()}${renderBack()}`}
     </div>
   `;
 }

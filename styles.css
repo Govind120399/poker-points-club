@@ -298,127 +298,332 @@ input:focus{
 }
 
 /* ================= PLAYER SEATS ================= */
-/* ================= PLAYER SEATS ================= */
 
 .seat{
   position:absolute;
-  width:72px;
-  min-height:52px;
-  padding:4px;
-  border-radius:14px;
-  background:rgba(0,0,0,.82);
-  border:1px solid rgba(212,175,55,.35);
-  text-align:center;
-  color:#fff;
-  z-index:5;
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  background:
+    rgba(0,0,0,.45);
+
+  border:
+    2px solid rgba(212,175,55,.25);
 }
 
-.seat-name{
-  font-size:10px;
-  font-weight:700;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.seat1{top:15px;left:50%;transform:translateX(-50%);}
+.seat2{top:65px;right:180px;}
+.seat3{top:170px;right:40px;}
+.seat4{top:330px;right:40px;}
+.seat5{bottom:65px;right:180px;}
+.seat6{bottom:15px;left:50%;transform:translateX(-50%);}
+.seat7{bottom:65px;left:180px;}
+.seat8{top:330px;left:40px;}
+.seat9{top:170px;left:40px;}
+.seat10{top:65px;left:180px;}
+
+/* ================= PLAYER CARDS ================= */
+
+#players-table{
+  display:grid;
+  gap:12px;
 }
 
-.seat-stack{
+.player-card{
+  background:#141414;
+  border:1px solid #2a2a2a;
+  border-radius:18px;
+  padding:16px;
+}
+
+.player-card.active-turn{
+  border-color:var(--gold);
+  box-shadow:
+    0 0 20px rgba(212,175,55,.25);
+}
+
+.player-card.folded{
+  opacity:.55;
+}
+
+.player-card.busted{
+  opacity:.4;
+}
+
+.player-meta{
+  display:grid;
+  grid-template-columns:
+    repeat(2,1fr);
+  gap:10px;
+  margin-top:12px;
+}
+
+.player-meta div{
+  background:#0e0e0e;
+  padding:10px;
+  border-radius:12px;
+}
+
+.meta-label{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+/* ================= BADGES ================= */
+
+.seat-badge{
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:12px;
+}
+
+.seat-badge.gold{
+  background:rgba(212,175,55,.2);
   color:var(--gold2);
-  font-size:9px;
 }
 
-.seat-action{
-  color:#b3b3b3;
-  font-size:8px;
+.seat-badge.danger{
+  background:rgba(255,0,0,.15);
+  color:#ff9494;
 }
 
-.seat-cards{
+/* ================= ACTIONS ================= */
+
+.action-panel{
+  position:sticky;
+  bottom:0;
+  z-index:100;
+}
+
+.action-zone{
+  display:grid;
+  gap:14px;
+}
+
+.amount-row{
   display:flex;
-  justify-content:center;
-  gap:2px;
-  margin-top:4px;
+  gap:10px;
 }
 
-.seat-cards .card-face,
-.seat-cards .card-back{
-  width:18px;
-  height:26px;
-  border-radius:5px;
-  font-size:10px;
+.amount-row input{
+  flex:1;
 }
 
-/* ===== DESKTOP 10 SEATS ===== */
-
-.seat1{
-  top:10px;
-  left:50%;
-  transform:translateX(-50%);
+.action-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,1fr);
+  gap:10px;
 }
 
-.seat2{
-  top:35px;
-  right:130px;
+.action-button{
+  background:#222;
+  color:white;
 }
 
-.seat3{
-  top:115px;
-  right:20px;
+.action-button.primary{
+  background:var(--gold);
+  color:black;
 }
 
-.seat4{
-  bottom:115px;
-  right:20px;
+.action-button.warning{
+  background:#9f6b00;
 }
 
-.seat5{
-  bottom:35px;
-  right:130px;
+.action-button.danger{
+  background:#6d1010;
 }
 
-.seat6{
-  bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
+/* ================= RESULTS ================= */
+
+.results-box,
+.log-list{
+  max-height:300px;
+  overflow:auto;
 }
 
-.seat7{
-  bottom:35px;
-  left:130px;
+.result-line,
+.log-line{
+  background:#111;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:10px;
 }
 
-.seat8{
-  bottom:115px;
-  left:20px;
+.empty-state{
+  color:var(--muted);
+  text-align:center;
 }
 
-.seat9{
-  top:115px;
-  left:20px;
+/* ================= MOBILE TABS ================= */
+
+.mobile-tabs{
+  display:flex;
+  gap:10px;
+  margin:20px 0;
 }
 
-.seat10{
-  top:35px;
-  left:130px;
+.tab-button{
+  flex:1;
+  background:#181818;
+  border:1px solid #2a2a2a;
+  color:white;
+  padding:14px;
+  border-radius:16px;
+}
+
+.tab-button.active{
+  background:var(--gold);
+  color:black;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width:900px){
+
+  .summary-grid{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .lobby-grid{
+    grid-template-columns:1fr;
+  }
+
+  .poker-table{
+    height:420px;
+    border-radius:50px;
+  }
+
+  .seat{
+    display:none;
+  }
+
+  .table-header{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .action-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media (max-width:600px){
+
+  .app-shell{
+    padding:12px;
+  }
+
+  .summary-card{
+    padding:14px;
+  }
+
+  .summary-card strong{
+    font-size:18px;
+  }
+
+  .card-face,
+  .card-back,
+  .card-slot{
+    width:52px;
+    height:74px;
+    font-size:20px;
+  }
+
+  .mobile-tabs{
+    position:sticky;
+    bottom:0;
+    background:#060606;
+    padding:10px 0;
+  }
+}
+/* ================= TABLE PANEL ================= */
+
+#table-panel{
+  display:block;
+}
+
+/* ================= HEADER ================= */
+
+.table-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:12px;
+  flex-shrink:0;
+}
+
+.header-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* ================= STATUS BAR ================= */
+
+.top-status-bar{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  background:#111;
+  border:1px solid rgba(212,175,55,.15);
+  border-radius:20px;
+  padding:14px;
+  margin-bottom:14px;
+  flex-shrink:0;
+}
+
+.top-status-bar div{
+  text-align:center;
+}
+
+.status-label{
+  display:block;
+  color:#9d9d9d;
+  font-size:11px;
+  margin-bottom:4px;
+}
+
+.top-status-bar strong{
+  color:var(--gold2);
+  font-size:15px;
 }
 
 /* ================= TABLE ================= */
 
 .table-wrapper{
-  margin:20px 0;
+  margin-bottom:20px;
 }
 
 .poker-table{
-  position:relative;
   width:100%;
-  height:360px;
-  border-radius:180px;
+  height:320px;
+  min-height:320px;
+  max-height:420px;
+
+  border-radius:220px;
+
   background:
-    radial-gradient(circle,#12663d 0%,#08301d 100%);
-  border:10px solid #4b3316;
-  overflow:hidden;
+    radial-gradient(
+      circle,
+      #12663d 0%,
+      #08301d 100%
+    );
+
+  border:10px solid #3b2a12;
+
   box-shadow:
     inset 0 0 50px rgba(0,0,0,.55),
-    0 15px 40px rgba(0,0,0,.5);
+    0 15px 40px rgba(0,0,0,.55);
+
+  position:relative;
 }
+
+/* ================= TABLE CENTER ================= */
 
 .table-center{
   position:absolute;
@@ -429,47 +634,59 @@ input:focus{
   width:100%;
 }
 
+/* ================= COMMUNITY CARDS ================= */
+
 .cards-row{
   display:flex;
   justify-content:center;
   gap:8px;
-  margin-top:12px;
+  flex-wrap:wrap;
+  margin-top:14px;
 }
 
-.card-face,
-.card-back,
-.card-slot{
-  width:46px;
-  height:66px;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
+/* ================= YOUR HAND ================= */
+
+.my-hand-panel{
+  margin-top:15px;
 }
 
-.card-face{
-  background:#fff;
-  color:#000;
-}
+/* ================= HOST PANEL ================= */
 
-.card-back{
-  background:#3d1d1d;
-}
+/* .host-panel{
+  display:none;
+} */
 
-.card-slot{
-  border:2px dashed rgba(255,255,255,.2);
-}
-
-/* ================= PANELS ================= */
-
-.host-panel{
-  margin-top:20px;
-}
+/* ================= ACTION PANEL ================= */
 
 .action-panel{
-  margin-top:20px;
+  margin-top:15px;
   margin-bottom:90px;
+
+  border-radius:
+    25px 25px 0 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      #181818,
+      #101010
+    );
+
+  padding:16px;
+}
+
+.action-zone{
+  display:grid;
+  gap:10px;
+}
+
+.amount-row{
+  display:flex;
+  gap:10px;
+}
+
+.amount-row input{
+  flex:1;
 }
 
 .action-grid{
@@ -478,23 +695,105 @@ input:focus{
   gap:10px;
 }
 
+/* ================= MOBILE NAV ================= */
+
 .mobile-tabs{
   position:fixed;
   left:0;
   right:0;
   bottom:0;
+  z-index:1200;
+
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+
   background:#050505;
   border-top:1px solid rgba(255,255,255,.08);
-  z-index:1000;
-  padding:10px;
+
+  padding:
+    10px
+    10px
+    calc(env(safe-area-inset-bottom) + 10px);
+}
+
+.tab-button{
+  background:none;
+  border:none;
+  color:#9d9d9d;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+
+  font-size:20px;
+}
+
+.tab-button span{
+  font-size:11px;
+}
+
+.tab-button.active{
+  color:var(--gold2);
+}
+
+/* ================= DRAWERS ================= */
+
+.drawer{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:60px;
+
+  max-height:55vh;
+  overflow:auto;
+
+  background:#111;
+  border-radius:25px 25px 0 0;
+
+  z-index:1100;
+
+  padding:20px;
+
+  box-shadow:
+    0 -10px 40px rgba(0,0,0,.5);
+}
+
+.drawer-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.drawer-close{
+  background:none;
+  border:none;
+  color:white;
+  font-size:28px;
+}
+
+/* ================= PLAYERS ================= */
+
+.players-table{
+  display:grid;
+  gap:12px;
+}
+
+/* ================= RESULTS ================= */
+
+.results-box,
+.log-list{
+  max-height:none;
+  overflow:visible;
 }
 
 /* ================= MOBILE ================= */
 
 @media (max-width:700px){
-
   .app-shell{
-    padding:12px;
+    padding:10px;
   }
 
   .top-status-bar{
@@ -502,106 +801,91 @@ input:focus{
   }
 
   .poker-table{
-    height:300px;
-    border-radius:35px;
+    height:35vh;
+    min-height:250px;
+    border-radius:40px;
   }
-
-  /* MOBILE = 6 SEATS ONLY */
 
   .seat{
-    width:60px;
-    min-height:45px;
-    font-size:8px;
-    padding:3px;
-  }
-
-  .seat-name{
-    font-size:9px;
-  }
-
-  .seat-stack{
-    font-size:8px;
-  }
-
-  .seat-action{
-    display:none;
-  }
-
-  .seat1{
-    top:10px;
-    left:50%;
-    transform:translateX(-50%);
-  }
-
-  .seat2{
-    top:95px;
-    right:10px;
-  }
-
-  .seat3{
-    bottom:95px;
-    right:10px;
-  }
-
-  .seat4{
-    bottom:10px;
-    left:50%;
-    transform:translateX(-50%);
-  }
-
-  .seat5{
-    bottom:95px;
-    left:10px;
-  }
-
-  .seat6{
-    top:95px;
-    left:10px;
-  }
-
-  .seat7,
-  .seat8,
-  .seat9,
-  .seat10{
     display:none;
   }
 
   .card-face,
   .card-back,
   .card-slot{
-    width:32px;
-    height:46px;
-    font-size:14px;
+    width:48px;
+    height:70px;
+    font-size:18px;
   }
 
-  .seat-cards .card-face,
-  .seat-cards .card-back{
-    width:16px;
-    height:22px;
-    font-size:8px;
+  .my-hand-panel{
+    bottom:120px;
   }
 
   .action-grid{
     grid-template-columns:repeat(2,1fr);
   }
+
+  .player-meta{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
+
+/* Extra small phones */
 
 @media (max-width:400px){
 
-  .poker-table{
-    height:270px;
+  .top-status-bar{
+    padding:10px;
   }
 
-  .seat{
-    width:54px;
-    min-height:42px;
+  .top-status-bar strong{
+    font-size:13px;
   }
 
   .card-face,
   .card-back,
   .card-slot{
-    width:28px;
-    height:40px;
-    font-size:12px;
+    width:42px;
+    height:62px;
+    font-size:16px;
   }
+
+  .action-button{
+    padding:10px;
+    font-size:13px;
+  }
+}
+#auth-panel,
+#lobby-panel{
+  display:block;
+}
+#table-panel{
+  padding-bottom:90px;
+}
+.seat{
+  position:absolute;
+  width:95px;
+  min-height:70px;
+  padding:8px;
+  border-radius:20px;
+  background:rgba(0,0,0,.7);
+  border:1px solid rgba(212,175,55,.35);
+  text-align:center;
+  color:white;
+  font-size:12px;
+}
+
+.seat-name{
+  font-weight:700;
+}
+
+.seat-stack{
+  color:#f3d27a;
+  margin-top:4px;
+}
+
+.seat-action{
+  color:#999;
+  font-size:11px;
 }
